@@ -1,0 +1,27 @@
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+
+apply plugin: 'java'
+apply plugin: 'jetty'
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+configurations {
+	jetty
+}
+
+dependencies {
+    compile 'org.slf4j:slf4j-api:1.7.5'
+    compile 'com.ponysdk:ponysdk:0.7.0.14'
+    
+    runtime 'org.json:json:20090211'
+    
+    jetty 'org.eclipse.jetty:jetty-websocket:8.1.15.v20140411'
+}
+
+jettyRun {
+     additionalRuntimeJars = configurations.jetty
+}
